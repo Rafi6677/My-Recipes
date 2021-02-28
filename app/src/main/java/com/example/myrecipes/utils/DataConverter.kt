@@ -5,7 +5,7 @@ import com.example.myrecipes.data.db.model.Ingredient
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-object DataConverter {
+class DataConverter {
 
     @TypeConverter
     fun convertIngredientsListToJSON(ingredientsList: List<Ingredient>): String {

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#D3D3D3"
+    android:weightSum="12"
+    tools:context=".presentation.MainActivity">
+
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:id="@+id/textGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/shadows_into_light_two"
+            android:text="@string/my_recipes"
+            android:textColor="@color/red_dark"
+            android:textSize="@dimen/_25ssp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:id="@+id/mainGrid"
+        android:rowCount="4"
+        android:columnCount="2"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/favourite_meal_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_favourite_meal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/favourite"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/breakfast_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_breakfast"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/breakfast"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/soup_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_soup"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/soup"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/main_dish_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_main_dish"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/main_dish"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/salad_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_salad"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/salad"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/snack_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_snack"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/snack"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dessert_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_dessert"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/Dessert"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/drink_cardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_rowWeight="1"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/grey_dark"
+            app:cardElevation="@dimen/_8sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/ic_drink"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_60sdp"
+                    android:contentDescription="@string/favourite" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/signika"
+                    android:text="@string/Drink"
+                    android:textAlignment="center"
+                    android:textColor="@color/red_dark"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
+
+    <RelativeLayout
+        android:id="@+id/add_recipe_button"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/background_grey_cut_top"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/add_recipe_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/add_recipe"
+            android:textSize="@dimen/_18ssp"
+            android:textStyle="bold"
+            android:textColor="@color/red_dark"
+            android:fontFamily="@font/signika"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -36,7 +36,7 @@ class RecipesDataSourceImpl(private val dao: RecipesDAO) : RecipesDataSource {
 
     override fun getMainDishRecipesFromDB(): LiveData<List<Recipe>> = dao.getMainDishRecipes()
 
-    override fun getDinnerRecipesFromDB(): LiveData<List<Recipe>> = dao.getDinnerRecipes()
+    override fun getSaladRecipesFromDB(): LiveData<List<Recipe>> = dao.getSaladRecipes()
 
     override fun getSnackRecipesFromDB(): LiveData<List<Recipe>> = dao.getSnackRecipes()
 

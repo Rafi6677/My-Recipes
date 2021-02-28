@@ -12,7 +12,7 @@ interface RecipesRepository {
     fun getBreakfastRecipes(): LiveData<List<Recipe>>
     fun getSoupRecipes(): LiveData<List<Recipe>>
     fun getMainDishRecipes(): LiveData<List<Recipe>>
-    fun getDinnerRecipes(): LiveData<List<Recipe>>
+    fun getSaladRecipes(): LiveData<List<Recipe>>
     fun getSnackRecipes(): LiveData<List<Recipe>>
     fun getDessertRecipes(): LiveData<List<Recipe>>
     fun getDrinkRecipes(): LiveData<List<Recipe>>

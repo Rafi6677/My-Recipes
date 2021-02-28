@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">My Recipes</string>
+    <string name="my_recipes">Moje przepisy</string>
+    <string name="favourite">Ulubione</string>
+    <string name="breakfast">Śniadania</string>
+    <string name="soup">Zupy</string>
+    <string name="main_dish">Dania główne</string>
+    <string name="salad">Sałatki</string>
+    <string name="snack">Przekąski</string>
+    <string name="Dessert">Desery</string>
+    <string name="Drink">Drinki</string>
+    <string name="add_recipe">Dodaj przepis</string>
 </resources>

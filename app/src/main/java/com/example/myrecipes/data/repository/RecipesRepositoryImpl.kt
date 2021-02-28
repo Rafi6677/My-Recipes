@@ -27,7 +27,7 @@ class RecipesRepositoryImpl(private val dataSource: RecipesDataSource) : Recipes
 
     override fun getMainDishRecipes(): LiveData<List<Recipe>> = dataSource.getMainDishRecipesFromDB()
 
-    override fun getDinnerRecipes(): LiveData<List<Recipe>> = dataSource.getDinnerRecipesFromDB()
+    override fun getSaladRecipes(): LiveData<List<Recipe>> = dataSource.getSaladRecipesFromDB()
 
     override fun getSnackRecipes(): LiveData<List<Recipe>> = dataSource.getSnackRecipesFromDB()
 

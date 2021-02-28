@@ -11,10 +11,10 @@ interface RecipesDAO {
     suspend fun insertRecipe(recipe: Recipe): Long
 
     @Delete
-    suspend fun deleteRecipe(recipe: Recipe): Long
+    suspend fun deleteRecipe(recipe: Recipe): Int
 
     @Update
-    suspend fun updateRecipe(recipe: Recipe): Long
+    suspend fun updateRecipe(recipe: Recipe): Int
 
     @Query("SELECT * FROM recipes WHERE is_favourite = 1 ORDER BY name")
     fun getFavouriteRecipes(): LiveData<List<Recipe>>
@@ -29,7 +29,7 @@ interface RecipesDAO {
     fun getMainDishRecipes(): LiveData<List<Recipe>>
 
     @Query("SELECT * FROM recipes WHERE category_id = 3 ORDER BY name")
-    fun getDinnerRecipes(): LiveData<List<Recipe>>
+    fun getSaladRecipes(): LiveData<List<Recipe>>
 
     @Query("SELECT * FROM recipes WHERE category_id = 4 ORDER BY name")
     fun getSnackRecipes(): LiveData<List<Recipe>>

@@ -12,7 +12,7 @@ interface RecipesDataSource {
     fun getBreakfastRecipesFromDB(): LiveData<List<Recipe>>
     fun getSoupRecipesFromDB(): LiveData<List<Recipe>>
     fun getMainDishRecipesFromDB(): LiveData<List<Recipe>>
-    fun getDinnerRecipesFromDB(): LiveData<List<Recipe>>
+    fun getSaladRecipesFromDB(): LiveData<List<Recipe>>
     fun getSnackRecipesFromDB(): LiveData<List<Recipe>>
     fun getDessertRecipesFromDB(): LiveData<List<Recipe>>
     fun getDrinkRecipesFromDB(): LiveData<List<Recipe>>
