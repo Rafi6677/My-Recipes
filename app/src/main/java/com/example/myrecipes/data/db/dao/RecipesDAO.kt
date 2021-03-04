@@ -17,27 +17,27 @@ interface RecipesDAO {
     suspend fun updateRecipe(recipe: Recipe): Int
 
     @Query("SELECT * FROM recipes WHERE is_favourite = 1 ORDER BY name")
-    fun getFavouriteRecipes(): LiveData<List<Recipe>>
+    suspend fun getFavouriteRecipes(): List<Recipe>
 
     @Query("SELECT * FROM recipes WHERE category_id = 0 ORDER BY name")
-    fun getBreakfastRecipes(): LiveData<List<Recipe>>
+    suspend fun getBreakfastRecipes(): List<Recipe>
 
     @Query("SELECT * FROM recipes WHERE category_id = 1 ORDER BY name")
-    fun getSoupRecipes(): LiveData<List<Recipe>>
+    suspend fun getSoupRecipes(): List<Recipe>
 
     @Query("SELECT * FROM recipes WHERE category_id = 2 ORDER BY name")
-    fun getMainDishRecipes(): LiveData<List<Recipe>>
+    suspend fun getMainDishRecipes(): List<Recipe>
 
     @Query("SELECT * FROM recipes WHERE category_id = 3 ORDER BY name")
-    fun getSaladRecipes(): LiveData<List<Recipe>>
+    suspend fun getSaladRecipes(): List<Recipe>
 
     @Query("SELECT * FROM recipes WHERE category_id = 4 ORDER BY name")
-    fun getSnackRecipes(): LiveData<List<Recipe>>
+    suspend fun getSnackRecipes(): List<Recipe>
 
     @Query("SELECT * FROM recipes WHERE category_id = 5 ORDER BY name")
-    fun getDessertRecipes(): LiveData<List<Recipe>>
+    suspend fun getDessertRecipes(): List<Recipe>
 
     @Query("SELECT * FROM recipes WHERE category_id = 6 ORDER BY name")
-    fun getDrinkRecipes(): LiveData<List<Recipe>>
+    suspend fun getDrinkRecipes(): List<Recipe>
 
 }

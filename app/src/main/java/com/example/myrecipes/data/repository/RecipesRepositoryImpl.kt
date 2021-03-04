@@ -19,20 +19,20 @@ class RecipesRepositoryImpl(private val dataSource: RecipesDataSource) : Recipes
         dataSource.updateRecipeToDB(recipe)
     }
 
-    override fun getFavouriteRecipes(): LiveData<List<Recipe>> = dataSource.getFavouriteRecipesFromDB()
+    override suspend fun getFavouriteRecipes(): List<Recipe> = dataSource.getFavouriteRecipesFromDB()
 
-    override fun getBreakfastRecipes(): LiveData<List<Recipe>> = dataSource.getBreakfastRecipesFromDB()
+    override suspend fun getBreakfastRecipes(): List<Recipe> = dataSource.getBreakfastRecipesFromDB()
 
-    override fun getSoupRecipes(): LiveData<List<Recipe>> = dataSource.getSoupRecipesFromDB()
+    override suspend fun getSoupRecipes(): List<Recipe> = dataSource.getSoupRecipesFromDB()
 
-    override fun getMainDishRecipes(): LiveData<List<Recipe>> = dataSource.getMainDishRecipesFromDB()
+    override suspend fun getMainDishRecipes(): List<Recipe> = dataSource.getMainDishRecipesFromDB()
 
-    override fun getSaladRecipes(): LiveData<List<Recipe>> = dataSource.getSaladRecipesFromDB()
+    override suspend fun getSaladRecipes(): List<Recipe> = dataSource.getSaladRecipesFromDB()
 
-    override fun getSnackRecipes(): LiveData<List<Recipe>> = dataSource.getSnackRecipesFromDB()
+    override suspend fun getSnackRecipes(): List<Recipe> = dataSource.getSnackRecipesFromDB()
 
-    override fun getDessertRecipes(): LiveData<List<Recipe>> = dataSource.getDessertRecipesFromDB()
+    override suspend fun getDessertRecipes(): List<Recipe> = dataSource.getDessertRecipesFromDB()
 
-    override fun getDrinkRecipes(): LiveData<List<Recipe>> = dataSource.getDrinkRecipesFromDB()
+    override suspend fun getDrinkRecipes(): List<Recipe> = dataSource.getDrinkRecipesFromDB()
 
 }

@@ -8,13 +8,13 @@ interface RecipesDataSource {
     suspend fun insertRecipeIntoDB(recipe: Recipe)
     suspend fun deleteRecipeFromDB(recipe: Recipe)
     suspend fun updateRecipeToDB(recipe: Recipe)
-    fun getFavouriteRecipesFromDB(): LiveData<List<Recipe>>
-    fun getBreakfastRecipesFromDB(): LiveData<List<Recipe>>
-    fun getSoupRecipesFromDB(): LiveData<List<Recipe>>
-    fun getMainDishRecipesFromDB(): LiveData<List<Recipe>>
-    fun getSaladRecipesFromDB(): LiveData<List<Recipe>>
-    fun getSnackRecipesFromDB(): LiveData<List<Recipe>>
-    fun getDessertRecipesFromDB(): LiveData<List<Recipe>>
-    fun getDrinkRecipesFromDB(): LiveData<List<Recipe>>
+    suspend  fun getFavouriteRecipesFromDB(): List<Recipe>
+    suspend fun getBreakfastRecipesFromDB(): List<Recipe>
+    suspend  fun getSoupRecipesFromDB(): List<Recipe>
+    suspend  fun getMainDishRecipesFromDB(): List<Recipe>
+    suspend   fun getSaladRecipesFromDB(): List<Recipe>
+    suspend  fun getSnackRecipesFromDB(): List<Recipe>
+    suspend  fun getDessertRecipesFromDB(): List<Recipe>
+    suspend  fun getDrinkRecipesFromDB(): List<Recipe>
 
 }

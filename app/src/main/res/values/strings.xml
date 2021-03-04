@@ -10,4 +10,14 @@
     <string name="Dessert">Desery</string>
     <string name="Drink">Drinki</string>
     <string name="add_recipe">Dodaj przepis</string>
+    <string name="name">Nazwa</string>
+    <string name="category">Kategoria</string>
+    <string name="category_brackets">(kategoria)</string>
+    <string name="next">Dalej</string>
+    <string name="cancel">Anuluj</string>
+    <string name="fill_data">Uzupełnij dane</string>
+    <string name="ingredients">Składniki</string>
+    <string name="preparation_description">Przygotowanie</string>
+    <string name="add_first_ingredient">Dodaj pierwszy składnik.</string>
+    <string name="add_preparation_description">Opisz sposób wykonania...</string>
 </resources>

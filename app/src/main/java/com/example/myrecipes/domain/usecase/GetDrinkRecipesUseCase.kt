@@ -5,6 +5,6 @@ import com.example.myrecipes.domain.repository.RecipesRepository
 
 class GetDrinkRecipesUseCase(private val recipesRepository: RecipesRepository) {
 
-    fun execute() = recipesRepository.getDrinkRecipes()
+    suspend fun execute() = recipesRepository.getDrinkRecipes()
 
 }

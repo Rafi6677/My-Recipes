@@ -28,20 +28,20 @@ class RecipesDataSourceImpl(private val dao: RecipesDAO) : RecipesDataSource {
         }
     }
 
-    override fun getFavouriteRecipesFromDB(): LiveData<List<Recipe>> = dao.getFavouriteRecipes()
+    override suspend fun getFavouriteRecipesFromDB(): List<Recipe> = dao.getFavouriteRecipes()
 
-    override fun getBreakfastRecipesFromDB(): LiveData<List<Recipe>> = dao.getBreakfastRecipes()
+    override suspend fun getBreakfastRecipesFromDB(): List<Recipe> = dao.getBreakfastRecipes()
 
-    override fun getSoupRecipesFromDB(): LiveData<List<Recipe>> = dao.getSoupRecipes()
+    override suspend fun getSoupRecipesFromDB(): List<Recipe> = dao.getSoupRecipes()
 
-    override fun getMainDishRecipesFromDB(): LiveData<List<Recipe>> = dao.getMainDishRecipes()
+    override suspend fun getMainDishRecipesFromDB(): List<Recipe> = dao.getMainDishRecipes()
 
-    override fun getSaladRecipesFromDB(): LiveData<List<Recipe>> = dao.getSaladRecipes()
+    override suspend fun getSaladRecipesFromDB(): List<Recipe> = dao.getSaladRecipes()
 
-    override fun getSnackRecipesFromDB(): LiveData<List<Recipe>> = dao.getSnackRecipes()
+    override suspend fun getSnackRecipesFromDB(): List<Recipe> = dao.getSnackRecipes()
 
-    override fun getDessertRecipesFromDB(): LiveData<List<Recipe>> = dao.getDessertRecipes()
+    override suspend fun getDessertRecipesFromDB(): List<Recipe> = dao.getDessertRecipes()
 
-    override fun getDrinkRecipesFromDB(): LiveData<List<Recipe>> = dao.getDrinkRecipes()
+    override suspend fun getDrinkRecipesFromDB(): List<Recipe> = dao.getDrinkRecipes()
 
 }

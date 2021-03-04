@@ -8,13 +8,13 @@ interface RecipesRepository {
     suspend fun addRecipe(recipe: Recipe)
     suspend fun deleteRecipe(recipe: Recipe)
     suspend fun editRecipe(recipe: Recipe)
-    fun getFavouriteRecipes(): LiveData<List<Recipe>>
-    fun getBreakfastRecipes(): LiveData<List<Recipe>>
-    fun getSoupRecipes(): LiveData<List<Recipe>>
-    fun getMainDishRecipes(): LiveData<List<Recipe>>
-    fun getSaladRecipes(): LiveData<List<Recipe>>
-    fun getSnackRecipes(): LiveData<List<Recipe>>
-    fun getDessertRecipes(): LiveData<List<Recipe>>
-    fun getDrinkRecipes(): LiveData<List<Recipe>>
+    suspend fun getFavouriteRecipes(): List<Recipe>?
+    suspend fun getBreakfastRecipes(): List<Recipe>?
+    suspend fun getSoupRecipes(): List<Recipe>?
+    suspend fun getMainDishRecipes(): List<Recipe>?
+    suspend fun getSaladRecipes(): List<Recipe>?
+    suspend fun getSnackRecipes(): List<Recipe>?
+    suspend fun getDessertRecipes(): List<Recipe>?
+    suspend fun getDrinkRecipes(): List<Recipe>?
 
 }
