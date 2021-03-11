@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+    <EditText
+        android:id="@+id/ingredient_name_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red_dark"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="normal"
+        android:hint="@string/name"
+        android:textColorHint="@color/grey_dark"/>
+
+    <EditText
+        android:id="@+id/ingredient_quantity_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/red_dark"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="normal"
+        android:hint="@string/quantity"
+        android:textColorHint="@color/grey_dark"/>
+
+</LinearLayout>

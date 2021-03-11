@@ -13,6 +13,7 @@ import com.example.myrecipes.R
 import com.example.myrecipes.data.db.model.Category
 import com.example.myrecipes.databinding.FragmentHomeBinding
 import com.example.myrecipes.presentation.editrecipe.EditRecipeActivity
+import com.example.myrecipes.presentation.editrecipe.RecipeOperationType
 import kotlinx.android.synthetic.main.dialog_recipe_creation.view.*
 
 class HomeFragment : Fragment() {
@@ -140,16 +141,19 @@ class HomeFragment : Fragment() {
         if (recipeName.isEmpty()) {
             Toast.makeText(requireActivity(), R.string.fill_data, Toast.LENGTH_SHORT)
                     .show()
-        } else {
-            val bundle = Bundle().apply {
-                putString("recipe_title", recipeName)
-            }
-            val intent = Intent(requireActivity(), EditRecipeActivity::class.java).apply {
-                putExtras(bundle)
-            }
-
-            startActivity(intent)
+            return
         }
+
+        val bundle = Bundle().apply {
+            putInt("recipe_operation_type", RecipeOperationType.Edit.value)
+            putString("recipe_title", recipeName)
+        }
+        val intent = Intent(activity, EditRecipeActivity::class.java).apply {
+            putExtras(bundle)
+        }
+
+        startActivity(intent)
+
     }
 
 }

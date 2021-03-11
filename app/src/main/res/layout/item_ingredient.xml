@@ -18,29 +18,32 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ingredient_name"
+        android:id="@+id/ingredient_name_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/name"
         android:textSize="@dimen/_16ssp"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:textStyle="italic"
+        android:textColor="@color/red_dark"
+        android:layout_marginStart="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ingredient_quantity"
+        android:id="@+id/ingredient_quantity_textView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:gravity="center"
         android:text="@string/name"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/edit_button"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ingredient_name"
+        app:layout_constraintStart_toEndOf="@+id/ingredient_name_textView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -48,8 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:src="@drawable/ic_edit"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/delete_button"
         app:layout_constraintTop_toTopOf="parent" />

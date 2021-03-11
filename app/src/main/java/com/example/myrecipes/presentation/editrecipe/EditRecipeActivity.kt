@@ -3,20 +3,32 @@ package com.example.myrecipes.presentation.editrecipe
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.ViewModelProvider
 import com.example.myrecipes.R
 import com.example.myrecipes.databinding.ActivityEditRecipeBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class EditRecipeActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var factory: EditRecipeViewModelFactory
 
     private lateinit var viewPagerAdapter: RecipeViewPagerAdapter
     private lateinit var binding: ActivityEditRecipeBinding
+    private lateinit var viewModel: EditRecipeViewModel
     private lateinit var recipeTitle: String
+    lateinit var recipeOperationType: RecipeOperationType
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityEditRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this, factory)
+                .get(EditRecipeViewModel::class.java)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         supportActionBar!!.hide()
@@ -26,6 +38,10 @@ class EditRecipeActivity : AppCompatActivity() {
 
     private fun initView() {
         val bundle = intent.extras!!
+
+        recipeOperationType = RecipeOperationType.setByValue(
+                bundle.getInt("recipe_operation_type")
+        )!!
         recipeTitle = bundle.getString("recipe_title")!!
         binding.recipeTitleEditText.setText(recipeTitle)
 

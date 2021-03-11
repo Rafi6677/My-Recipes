@@ -18,7 +18,7 @@ class DataConverter {
     fun convertJSONToProductsList(ingredientsJSON: String): List<Ingredient> {
         val type = object : TypeToken<List<Ingredient>>() {}.type
 
-        return Gson().fromJson<List<Ingredient>>(ingredientsJSON, type)
+        return Gson().fromJson(ingredientsJSON, type)
     }
 
 }
