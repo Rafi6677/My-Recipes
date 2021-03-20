@@ -1,6 +1,7 @@
 package com.example.myrecipes.presentation.editrecipe
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
@@ -12,12 +13,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class EditRecipeActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var factory: EditRecipeViewModelFactory
-
+    private val viewModel by viewModels<EditRecipeViewModel>()
     private lateinit var viewPagerAdapter: RecipeViewPagerAdapter
     private lateinit var binding: ActivityEditRecipeBinding
-    private lateinit var viewModel: EditRecipeViewModel
     private lateinit var recipeTitle: String
     lateinit var recipeOperationType: RecipeOperationType
 
@@ -26,9 +24,6 @@ class EditRecipeActivity : AppCompatActivity() {
 
         binding = ActivityEditRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        viewModel = ViewModelProvider(this, factory)
-                .get(EditRecipeViewModel::class.java)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         supportActionBar!!.hide()
