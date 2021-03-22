@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/category_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
+
+        <RadioButton
+            android:id="@+id/category1_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/breakfast"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/red_dark"/>
+
+        <RadioButton
+            android:id="@+id/category2_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/soup"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/red_dark"/>
+
+        <RadioButton
+            android:id="@+id/category3_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_dish"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/red_dark"/>
+
+        <RadioButton
+            android:id="@+id/category4_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/salad"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/red_dark"/>
+
+        <RadioButton
+            android:id="@+id/category5_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/snack"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/red_dark"/>
+
+        <RadioButton
+            android:id="@+id/category6_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dessert"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/red_dark"/>
+
+        <RadioButton
+            android:id="@+id/category7_radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drink"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/red_dark"/>
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -18,7 +18,8 @@ import kotlinx.android.synthetic.main.dialog_recipe_creation.view.*
 class IngredientsFragment : Fragment() {
 
     private lateinit var binding: FragmentIngredientsBinding
-    private lateinit var adapter: IngredientsAdapter
+    private lateinit var viewModel: EditRecipeViewModel
+    lateinit var adapter: IngredientsAdapter
 
     companion object {
         fun getInstance(): IngredientsFragment {
@@ -39,6 +40,7 @@ class IngredientsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentIngredientsBinding.bind(view)
+        viewModel = (activity as EditRecipeActivity).viewModel
 
         initData()
     }
@@ -127,6 +129,7 @@ class IngredientsFragment : Fragment() {
             IngredientOperation.Add -> {
                 val ingredient = Ingredient(name, quantity)
                 adapter.getIngredientsList().add(ingredient)
+                viewModel.ingredientsList.addAll(adapter.getIngredientsList())
                 manageAddFirstIngredientInfoVisibility()
                 adapter.notifyDataSetChanged()
             }

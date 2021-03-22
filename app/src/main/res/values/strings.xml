@@ -7,13 +7,15 @@
     <string name="main_dish">Dania główne</string>
     <string name="salad">Sałatki</string>
     <string name="snack">Przekąski</string>
-    <string name="Dessert">Desery</string>
-    <string name="Drink">Drinki</string>
+    <string name="dessert">Desery</string>
+    <string name="drink">Drinki</string>
     <string name="add_recipe">Dodaj przepis</string>
     <string name="name">Nazwa</string>
     <string name="quantity">Ilość</string>
     <string name="category">Kategoria</string>
     <string name="category_brackets">(kategoria)</string>
+    <string name="choose_category">Wybierz kategorię</string>
+    <string name="ok">OK</string>
     <string name="next">Dalej</string>
     <string name="add">Dodaj</string>
     <string name="save">Zapisz</string>
