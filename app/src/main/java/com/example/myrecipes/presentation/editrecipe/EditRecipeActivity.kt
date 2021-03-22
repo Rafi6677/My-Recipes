@@ -1,7 +1,11 @@
 package com.example.myrecipes.presentation.editrecipe
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +25,9 @@ class EditRecipeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditRecipeBinding
     private lateinit var recipeTitle: String
     lateinit var recipeOperationType: RecipeOperationType
+
+    private lateinit var ingredientsFragment: IngredientsFragment
+    private lateinit var preparationDescriptionFragment: PreparationDescriptionFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,14 +55,17 @@ class EditRecipeActivity : AppCompatActivity() {
     }
 
     private fun initViewPager() {
+        ingredientsFragment = IngredientsFragment.getInstance()
+        preparationDescriptionFragment = PreparationDescriptionFragment.getInstance()
+
         viewPagerAdapter = RecipeViewPagerAdapter(supportFragmentManager).apply {
             addFragment(
-                    IngredientsFragment.getInstance(),
-                    resources.getString(R.string.ingredients)
+                ingredientsFragment,
+                resources.getString(R.string.ingredients)
             )
             addFragment(
-                    PreparationDescriptionFragment.getInstance(),
-                    resources.getString(R.string.preparation_description)
+                preparationDescriptionFragment,
+                resources.getString(R.string.preparation_description)
             )
         }
 
@@ -71,7 +81,23 @@ class EditRecipeActivity : AppCompatActivity() {
             showCategoryDialog(categoryId)
         }
         binding.saveButton.setOnClickListener {
+            viewModel.ingredientsList = ingredientsFragment.adapter.getIngredientsList()
+            viewModel.preparationDescription = preparationDescriptionFragment.getPreparationDescription()
 
+            if (viewModel.ingredientsList.isEmpty()
+                || viewModel.preparationDescription.isEmpty()
+                || binding.recipeTitleEditText.text.toString().isEmpty()
+            ) {
+                Toast.makeText(this, resources.getString(R.string.fill_data), Toast.LENGTH_SHORT)
+                        .show()
+                return@setOnClickListener
+            }
+
+            viewModel.saveRecipe(binding.recipeTitleEditText.text.toString())
+
+            Toast.makeText(this, resources.getString(R.string.recipe_added), Toast.LENGTH_SHORT)
+                    .show()
+            finish()
         }
     }
 
@@ -97,6 +123,16 @@ class EditRecipeActivity : AppCompatActivity() {
             setView(dialogLayout)
             setPositiveButton(resources.getString(R.string.ok)) { _, _ -> }
         }.show()
+    }
+
+    fun closeKeyboard() {
+        val view: View? = this.currentFocus
+
+        if (view != null) {
+            val manager: InputMethodManager = getSystemService(
+                    Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            manager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     private fun saveRecipe(recipe: Recipe) {

@@ -11,13 +11,13 @@ data class Recipe (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int,
-    @ColumnInfo(name = "name")
-    val name: String,
+    @ColumnInfo(name = "title")
+    val title: String,
     @TypeConverters(DataConverter::class)
     @ColumnInfo(name = "ingredients")
     val ingredients: List<Ingredient>,
-    @ColumnInfo(name = "directions_description")
-    val directionsDescription: String,
+    @ColumnInfo(name = "preparation_description")
+    val preparationDescription: String,
     @ColumnInfo(name = "notes")
     val notes: String,
     @ColumnInfo(name = "category_id")

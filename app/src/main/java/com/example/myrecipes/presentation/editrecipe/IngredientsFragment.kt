@@ -132,6 +132,7 @@ class IngredientsFragment : Fragment() {
                 viewModel.ingredientsList.addAll(adapter.getIngredientsList())
                 manageAddFirstIngredientInfoVisibility()
                 adapter.notifyDataSetChanged()
+                (activity as EditRecipeActivity).closeKeyboard()
             }
             IngredientOperation.Edit -> {
 
@@ -148,7 +149,7 @@ class IngredientsFragment : Fragment() {
     }
 
     private fun manageAddFirstIngredientInfoVisibility() {
-        if (adapter.getIngredientsList().isNotEmpty()) {
+        if (adapter.getIngredientsList().isEmpty()) {
             binding.addFirstIngredientInfoTextView.visibility = View.VISIBLE
         } else {
             binding.addFirstIngredientInfoTextView.visibility = View.INVISIBLE
