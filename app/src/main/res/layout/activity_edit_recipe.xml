@@ -49,9 +49,29 @@
         android:paddingEnd="@dimen/_10sdp"
         android:src="@drawable/ic_edit"
         app:layout_constraintBottom_toBottomOf="@+id/recipe_category_textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/recipe_category_textView"
+        app:layout_constraintTop_toTopOf="@+id/recipe_category_textView" />
+
+    <ImageView
+        android:id="@+id/favorite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:src="@drawable/ic_favorite_border"
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_category_textView"
+        app:layout_constraintEnd_toStartOf="@+id/delete_button"
+        app:layout_constraintTop_toTopOf="@+id/recipe_category_textView" />
+
+    <ImageView
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_category_textView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recipe_category_textView" />
 
     <androidx.viewpager.widget.ViewPager

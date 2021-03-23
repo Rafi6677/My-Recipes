@@ -28,4 +28,5 @@
     <string name="edit_ingredient">Edytuj składnik</string>
     <string name="add_preparation_description">Opisz sposób wykonania...</string>
     <string name="recipe_added">Dodano nowy przepis</string>
+    <string name="filter_recipe_by_name">Szukaj po nazwie...</string>
 </resources>
