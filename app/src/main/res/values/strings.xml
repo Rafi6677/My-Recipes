@@ -29,4 +29,5 @@
     <string name="add_preparation_description">Opisz sposób wykonania...</string>
     <string name="recipe_added">Dodano nowy przepis</string>
     <string name="filter_recipe_by_name">Szukaj po nazwie...</string>
+    <string name="no_recipes_info">Nie masz jeszcze żadnego zapisanego przepisu w tej kategorii.</string>
 </resources>

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_add"
-        app:tint="@color/grey_dark" />
+        app:tint="@color/grey" />
 
     <TextView
         android:id="@+id/add_first_ingredient_info_textView"

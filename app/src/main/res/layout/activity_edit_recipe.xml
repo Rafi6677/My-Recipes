@@ -19,7 +19,7 @@
         android:hint="@string/name"
         android:inputType="textMultiLine"
         android:textColor="@color/red_dark"
-        android:textColorHint="@color/grey_dark"
+        android:textColorHint="@color/grey"
         android:textSize="@dimen/_16ssp"
         android:fontFamily="@font/signika"
         android:padding="@dimen/_5sdp"
@@ -110,6 +110,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_save"
-        app:tint="@color/grey_dark"/>
+        app:tint="@color/grey"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

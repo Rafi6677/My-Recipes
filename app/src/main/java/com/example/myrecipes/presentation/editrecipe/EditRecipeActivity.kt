@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.example.myrecipes.R
 import com.example.myrecipes.data.db.model.Category
 import com.example.myrecipes.data.db.model.Recipe
+import com.example.myrecipes.data.util.CategoryConversions
 import com.example.myrecipes.databinding.ActivityEditRecipeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.dialog_category_chooser.view.*
@@ -86,6 +87,7 @@ class EditRecipeActivity : AppCompatActivity() {
 
             if (viewModel.ingredientsList.isEmpty()
                 || viewModel.preparationDescription.isEmpty()
+                || viewModel.categoryId == 0
                 || binding.recipeTitleEditText.text.toString().isEmpty()
             ) {
                 Toast.makeText(this, resources.getString(R.string.fill_data), Toast.LENGTH_SHORT)
@@ -104,9 +106,9 @@ class EditRecipeActivity : AppCompatActivity() {
     private fun showCategoryDialog(chosenCategoryId: Int?) {
         val dialogLayout = layoutInflater.inflate(R.layout.dialog_category_chooser, null).apply {
             category_radioGroup.setOnCheckedChangeListener { _, checkedId ->
-                val categoryId = viewModel.mapDialogInterfaceCategoryToCategoryId(checkedId)
+                val categoryId = CategoryConversions.mapDialogInterfaceCategoryToCategoryId(checkedId)
                 viewModel.categoryId = categoryId
-                binding.recipeCategoryTextView.text = viewModel.getCategoryName(
+                binding.recipeCategoryTextView.text = CategoryConversions.getCategoryName(
                     Category.setByCategoryId(categoryId),
                     resources
                 )
