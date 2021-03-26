@@ -65,18 +65,24 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
             binding.ingredientNameTextView.text = ingredient.name
             binding.ingredientQuantityTextView.text = ingredient.quantity
 
-            if (recipeOperationType == RecipeOperationType.Edit) {
-                binding.editButton.apply {
-                    visibility = View.VISIBLE
-                    setOnClickListener {
-                        editIngredientButtonClickListener
+            when(recipeOperationType) {
+                RecipeOperationType.Edit -> {
+                    binding.editButton.apply {
+                        visibility = View.VISIBLE
+                        setOnClickListener {
+                            editIngredientButtonClickListener
+                        }
+                    }
+                    binding.deleteButton.apply {
+                        visibility = View.VISIBLE
+                        setOnClickListener {
+                            deleteIngredientButtonClickListener
+                        }
                     }
                 }
-                binding.deleteButton.apply {
-                    visibility = View.VISIBLE
-                    setOnClickListener {
-                        deleteIngredientButtonClickListener
-                    }
+                RecipeOperationType.Display -> {
+                    binding.editButton.visibility = View.INVISIBLE
+                    binding.deleteButton.visibility = View.INVISIBLE
                 }
             }
         }

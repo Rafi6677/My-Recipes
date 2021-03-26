@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.res.ResourcesCompat
 import com.example.myrecipes.R
 import com.example.myrecipes.data.db.model.Category
 import com.example.myrecipes.data.db.model.Recipe
@@ -25,6 +26,7 @@ class EditRecipeActivity : AppCompatActivity() {
     private lateinit var viewPagerAdapter: RecipeViewPagerAdapter
     private lateinit var binding: ActivityEditRecipeBinding
     private lateinit var recipeTitle: String
+    var recipe: Recipe ?= null
     lateinit var recipeOperationType: RecipeOperationType
 
     private lateinit var ingredientsFragment: IngredientsFragment
@@ -49,10 +51,26 @@ class EditRecipeActivity : AppCompatActivity() {
         recipeOperationType = RecipeOperationType.setByValue(
             bundle.getInt("recipe_operation_type")
         )!!
-        recipeTitle = bundle.getString("recipe_title")!!
-        binding.recipeTitleEditText.setText(recipeTitle)
 
         initViewPager()
+
+        when (recipeOperationType) {
+            RecipeOperationType.Edit -> {
+                recipe = null
+                setRecipeTitle(bundle.getString("recipe_title")!!)
+                binding.recipeTitleEditText.isFocusable = true
+                binding.categoryButton.visibility = View.VISIBLE
+                binding.deleteButton.visibility = View.VISIBLE
+                binding.saveButton.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_save, this.theme))
+            }
+            RecipeOperationType.Display -> {
+                prepareRecipe(bundle.getSerializable("recipe")!! as Recipe)
+                binding.recipeTitleEditText.isFocusable = false
+                binding.categoryButton.visibility = View.INVISIBLE
+                binding.deleteButton.visibility = View.GONE
+                binding.saveButton.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_edit, this.theme))
+            }
+        }
     }
 
     private fun initViewPager() {
@@ -72,6 +90,24 @@ class EditRecipeActivity : AppCompatActivity() {
 
         binding.editRecipeViewPager.adapter = viewPagerAdapter
         binding.editRecipeTabLayout.setupWithViewPager(binding.editRecipeViewPager)
+    }
+
+    private fun prepareRecipe(bundleRecipe: Recipe) {
+        recipe = bundleRecipe
+        setRecipeTitle(recipe!!.title)
+        setCategory(recipe!!.categoryId)
+    }
+
+    private fun setRecipeTitle(title: String) {
+        recipeTitle = title
+        binding.recipeTitleEditText.setText(recipeTitle)
+    }
+
+    private fun setCategory(categoryId: Int) {
+        binding.recipeCategoryTextView.text = CategoryConversions.getCategoryName(
+            Category.setByCategoryId(categoryId),
+            resources
+        )
     }
 
     private fun initButtons() {
@@ -135,10 +171,6 @@ class EditRecipeActivity : AppCompatActivity() {
                     Context.INPUT_METHOD_SERVICE) as InputMethodManager
             manager.hideSoftInputFromWindow(view.windowToken, 0)
         }
-    }
-
-    private fun saveRecipe(recipe: Recipe) {
-
     }
 
 }

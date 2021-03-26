@@ -8,7 +8,7 @@ import com.example.myrecipes.databinding.ItemRecipeBinding
 
 class RecipesAdapter(
     private val clickListener: (Recipe) -> Unit
-) : RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
+): RecyclerView.Adapter<RecipesAdapter.RecipesViewHolder>() {
 
     private val recipesList = ArrayList<Recipe>()
 
@@ -49,7 +49,7 @@ class RecipesAdapter(
 
         fun bind(recipe: Recipe) {
             binding.recipeTitleTextView.text = recipe.title
-            binding.recipeCardView.setOnClickListener { clickListener }
+            binding.recipeCardView.setOnClickListener { clickListener(recipe) }
         }
 
     }

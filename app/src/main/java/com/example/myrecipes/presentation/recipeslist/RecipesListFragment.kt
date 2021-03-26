@@ -1,5 +1,6 @@
 package com.example.myrecipes.presentation.recipeslist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import com.example.myrecipes.data.db.model.Category
 import com.example.myrecipes.data.db.model.Recipe
 import com.example.myrecipes.data.util.CategoryConversions
 import com.example.myrecipes.databinding.FragmentRecipesListBinding
+import com.example.myrecipes.presentation.editrecipe.EditRecipeActivity
+import com.example.myrecipes.presentation.editrecipe.RecipeOperationType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
 
@@ -74,7 +77,15 @@ class RecipesListFragment : Fragment() {
     }
 
     private fun onRecipeClickListener(recipe: Recipe) {
+        val bundle = Bundle().apply {
+            putInt("recipe_operation_type", RecipeOperationType.Display.value)
+            putSerializable("recipe", recipe)
+        }
+        val intent = Intent(activity, EditRecipeActivity::class.java).apply {
+            putExtras(bundle)
+        }
 
+        startActivity(intent)
     }
 
     private fun showProgressBar() {

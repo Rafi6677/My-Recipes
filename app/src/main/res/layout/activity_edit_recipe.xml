@@ -35,6 +35,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/signika"
         android:padding="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:text="@string/category_brackets"
         android:textColor="@color/red_dark"
         android:textSize="@dimen/_14ssp"

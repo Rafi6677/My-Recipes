@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.myrecipes.R
+import com.example.myrecipes.data.db.model.Recipe
 import com.example.myrecipes.databinding.FragmentPreparationDescriptionBinding
 
 class PreparationDescriptionFragment : Fragment() {
 
     private lateinit var binding: FragmentPreparationDescriptionBinding
     private lateinit var viewModel: EditRecipeViewModel
+    private var recipe: Recipe? = null
 
     companion object {
         fun getInstance(): PreparationDescriptionFragment {
@@ -31,6 +33,18 @@ class PreparationDescriptionFragment : Fragment() {
 
         binding = FragmentPreparationDescriptionBinding.bind(view)
         viewModel = (activity as EditRecipeActivity).viewModel
+        recipe = (activity as EditRecipeActivity).recipe
+
+        initData()
+    }
+
+    private fun initData() {
+        if ((activity as EditRecipeActivity).recipeOperationType == RecipeOperationType.Display) {
+            binding.preparationDescriptionEditText.apply {
+                setText(recipe!!.preparationDescription)
+                isFocusable = false
+            }
+        }
     }
 
     fun getPreparationDescription(): String {

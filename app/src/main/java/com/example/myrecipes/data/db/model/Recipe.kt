@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.myrecipes.utils.DataConverter
+import java.io.Serializable
 
 @Entity(tableName = "recipes")
 data class Recipe (
@@ -26,4 +27,4 @@ data class Recipe (
     val isFavourite: Boolean,
     @ColumnInfo(name = "modification_timestamp")
     val modificationTimestamp: Long
-)
+): Serializable

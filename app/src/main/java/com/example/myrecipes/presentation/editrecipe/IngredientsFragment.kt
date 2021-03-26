@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myrecipes.R
 import com.example.myrecipes.data.db.model.Ingredient
+import com.example.myrecipes.data.db.model.Recipe
 import com.example.myrecipes.databinding.FragmentIngredientsBinding
 import kotlinx.android.synthetic.main.dialog_add_ingredient.view.*
 import kotlinx.android.synthetic.main.dialog_recipe_creation.view.*
@@ -19,6 +20,7 @@ class IngredientsFragment : Fragment() {
 
     private lateinit var binding: FragmentIngredientsBinding
     private lateinit var viewModel: EditRecipeViewModel
+    private var recipe: Recipe? = null
     lateinit var adapter: IngredientsAdapter
 
     companion object {
@@ -41,6 +43,7 @@ class IngredientsFragment : Fragment() {
 
         binding = FragmentIngredientsBinding.bind(view)
         viewModel = (activity as EditRecipeActivity).viewModel
+        recipe = (activity as EditRecipeActivity).recipe
 
         initData()
     }
@@ -51,6 +54,8 @@ class IngredientsFragment : Fragment() {
 
         when((activity as EditRecipeActivity).recipeOperationType) {
             RecipeOperationType.Edit -> {
+                binding.addFirstIngredientInfoTextView.visibility = View.VISIBLE
+                binding.addIngredientButton.visibility = View.VISIBLE
                 binding.addIngredientButton.apply {
                     setOnClickListener {
                         addOrEditIngredient(IngredientOperation.Add, null)
@@ -67,7 +72,12 @@ class IngredientsFragment : Fragment() {
                 }
             }
             RecipeOperationType.Display -> {
+                binding.addFirstIngredientInfoTextView.visibility = View.INVISIBLE
+                binding.addIngredientButton.visibility = View.INVISIBLE
 
+                adapter.apply {
+                    setIngredientsList(recipe!!.ingredients)
+                }
             }
         }
 
