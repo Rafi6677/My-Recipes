@@ -91,7 +91,7 @@
         android:id="@+id/edit_recipe_tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/grey_light"
+        app:tabTextColor="@color/grey_dark"
         app:tabSelectedTextColor="@color/red_dark"
         android:background="@drawable/background_grey_cut_top"
         app:layout_constraintBottom_toBottomOf="parent"

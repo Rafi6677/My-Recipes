@@ -42,4 +42,23 @@ class EditRecipeViewModel @Inject constructor(
         }
     }
 
+    fun changeRecipeIsFavorite(recipe: Recipe): Recipe {
+        val updatedRecipe = Recipe(
+            recipe.id,
+            recipe.title,
+            recipe.ingredients,
+            recipe.preparationDescription,
+            recipe.notes,
+            recipe.categoryId,
+            !recipe.isFavourite,
+            Date().time
+        )
+
+        viewModelScope.launch {
+            editRecipeUseCase.execute(updatedRecipe)
+        }
+
+        return updatedRecipe
+    }
+
 }

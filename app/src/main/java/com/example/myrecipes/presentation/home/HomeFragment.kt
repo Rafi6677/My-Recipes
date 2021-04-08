@@ -145,7 +145,7 @@ class HomeFragment : Fragment() {
         }
 
         val bundle = Bundle().apply {
-            putInt("recipe_operation_type", RecipeOperationType.Edit.value)
+            putInt("recipe_operation_type", RecipeOperationType.Add.value)
             putString("recipe_title", recipeName)
         }
         val intent = Intent(activity, EditRecipeActivity::class.java).apply {

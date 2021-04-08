@@ -16,7 +16,6 @@ import com.example.myrecipes.databinding.FragmentRecipesListBinding
 import com.example.myrecipes.presentation.editrecipe.EditRecipeActivity
 import com.example.myrecipes.presentation.editrecipe.RecipeOperationType
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class RecipesListFragment : Fragment() {
@@ -37,12 +36,11 @@ class RecipesListFragment : Fragment() {
         categoryId = requireArguments().getInt("category_id")
 
         initView()
-        initRecyclerView()
     }
 
     override fun onResume() {
         super.onResume()
-        recipesAdapter.notifyDataSetChanged()
+        refreshRecyclerView()
     }
 
     private fun initView() {
@@ -55,7 +53,7 @@ class RecipesListFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerView() {
+    private fun refreshRecyclerView() {
         showProgressBar()
 
         recipesAdapter = RecipesAdapter { recipe ->

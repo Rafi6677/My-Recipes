@@ -53,8 +53,26 @@ class IngredientsFragment : Fragment() {
         adapter.setOperationType((activity as EditRecipeActivity).recipeOperationType)
 
         when((activity as EditRecipeActivity).recipeOperationType) {
-            RecipeOperationType.Edit -> {
+            RecipeOperationType.Add -> {
                 binding.addFirstIngredientInfoTextView.visibility = View.VISIBLE
+                binding.addIngredientButton.visibility = View.VISIBLE
+                binding.addIngredientButton.apply {
+                    setOnClickListener {
+                        addOrEditIngredient(IngredientOperation.Add, null)
+                    }
+                }
+
+                adapter.apply {
+                    setEditIngredientButtonClickListener {
+                        editIngredient(it)
+                    }
+                    setDeleteIngredientButtonClickListener {
+                        deleteIngredient(it)
+                    }
+                }
+            }
+            RecipeOperationType.Edit -> {
+                binding.addFirstIngredientInfoTextView.visibility = View.INVISIBLE
                 binding.addIngredientButton.visibility = View.VISIBLE
                 binding.addIngredientButton.apply {
                     setOnClickListener {
