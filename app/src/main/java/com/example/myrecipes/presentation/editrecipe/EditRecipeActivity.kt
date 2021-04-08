@@ -40,7 +40,14 @@ class EditRecipeActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         supportActionBar!!.hide()
 
-        initView()
+        val bundle = intent.extras!!
+        recipeOperationType = RecipeOperationType.setByValue(bundle.getInt("recipe_operation_type"))!!
+
+        val bundleTitle = bundle.getString("recipe_title")
+        val bundleRecipe = bundle.getSerializable("recipe") as Recipe?
+
+        initViewPager()
+        initView(bundleTitle, bundleRecipe)
         initButtons()
     }
 
@@ -49,35 +56,27 @@ class EditRecipeActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun initView() {
-        val bundle = intent.extras!!
-
-        recipeOperationType = RecipeOperationType.setByValue(
-            bundle.getInt("recipe_operation_type")
-        )!!
-
-        initViewPager()
-
+    private fun initView(titleBundle: String?, recipeBundle: Recipe?) {
         when (recipeOperationType) {
             RecipeOperationType.Add -> {
                 recipe = null
-                setRecipeTitle(bundle.getString("recipe_title")!!)
-                binding.recipeTitleEditText.isFocusable = true
+                setRecipeTitle(titleBundle!!)
+                binding.recipeTitleEditText.isFocusableInTouchMode = true
                 binding.categoryButton.visibility = View.VISIBLE
                 binding.favoriteButton.visibility = View.INVISIBLE
                 binding.deleteButton.visibility = View.INVISIBLE
                 binding.saveButton.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_save, this.theme))
             }
             RecipeOperationType.Edit -> {
-                prepareRecipe(bundle.getSerializable("recipe")!! as Recipe)
-                binding.recipeTitleEditText.isFocusable = true
+                prepareRecipe(recipeBundle!!)
+                binding.recipeTitleEditText.isFocusableInTouchMode = true
                 binding.categoryButton.visibility = View.VISIBLE
                 binding.favoriteButton.visibility = View.VISIBLE
                 binding.deleteButton.visibility = View.VISIBLE
                 binding.saveButton.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_save, this.theme))
             }
             RecipeOperationType.Display -> {
-                prepareRecipe(bundle.getSerializable("recipe")!! as Recipe)
+                prepareRecipe(recipeBundle!!)
                 binding.recipeTitleEditText.isFocusable = false
                 binding.categoryButton.visibility = View.INVISIBLE
                 binding.favoriteButton.visibility = View.VISIBLE
@@ -124,6 +123,7 @@ class EditRecipeActivity : AppCompatActivity() {
     }
 
     private fun setCategory(categoryId: Int) {
+        viewModel.categoryId = categoryId
         binding.recipeCategoryTextView.text = CategoryConversions.getCategoryName(
             Category.setByCategoryId(categoryId),
             resources
@@ -159,24 +159,36 @@ class EditRecipeActivity : AppCompatActivity() {
             }
         }
         binding.saveButton.setOnClickListener {
-            viewModel.ingredientsList = ingredientsFragment.adapter.getIngredientsList()
-            viewModel.preparationDescription = preparationDescriptionFragment.getPreparationDescription()
+            when (recipeOperationType) {
+                RecipeOperationType.Add -> {
+                    if (!validateDataBeforeSaving()) {
+                        return@setOnClickListener
+                    }
 
-            if (viewModel.ingredientsList.isEmpty()
-                || viewModel.preparationDescription.isEmpty()
-                || viewModel.categoryId == 0
-                || binding.recipeTitleEditText.text.toString().isEmpty()
-            ) {
-                Toast.makeText(this, resources.getString(R.string.fill_data), Toast.LENGTH_SHORT)
-                        .show()
-                return@setOnClickListener
+                    viewModel.saveRecipe()
+
+                    Toast.makeText(this, resources.getString(R.string.recipe_added), Toast.LENGTH_SHORT)
+                            .show()
+                    finish()
+                }
+                RecipeOperationType.Edit -> {
+                    if (!validateDataBeforeSaving()) {
+                        return@setOnClickListener
+                    }
+
+                    viewModel.updateRecipe(recipe!!)
+
+                    Toast.makeText(this, resources.getString(R.string.recipe_updated), Toast.LENGTH_SHORT)
+                            .show()
+                    finish()
+                }
+                RecipeOperationType.Display -> {
+                    recipeOperationType = RecipeOperationType.Edit
+                    initView(null, recipe)
+                    ingredientsFragment.refreshData()
+                    preparationDescriptionFragment.refreshData()
+                }
             }
-
-            viewModel.saveRecipe(binding.recipeTitleEditText.text.toString())
-
-            Toast.makeText(this, resources.getString(R.string.recipe_added), Toast.LENGTH_SHORT)
-                    .show()
-            finish()
         }
     }
 
@@ -202,6 +214,28 @@ class EditRecipeActivity : AppCompatActivity() {
             setView(dialogLayout)
             setPositiveButton(resources.getString(R.string.ok)) { _, _ -> }
         }.show()
+    }
+
+    private fun validateDataBeforeSaving(): Boolean {
+        viewModel.title = binding.recipeTitleEditText.text.toString()
+        viewModel.ingredientsList = ingredientsFragment.adapter.getIngredientsList()
+        viewModel.preparationDescription = preparationDescriptionFragment.getPreparationDescription()
+
+        if (recipeOperationType == RecipeOperationType.Edit) {
+            viewModel.isFavorite = recipe!!.isFavourite
+        }
+
+        if (viewModel.ingredientsList.isEmpty()
+                || viewModel.preparationDescription.isEmpty()
+                || viewModel.categoryId == 0
+                || title.isEmpty()
+        ) {
+            Toast.makeText(this, resources.getString(R.string.fill_data), Toast.LENGTH_SHORT)
+                    .show()
+            return false
+        }
+
+        return true
     }
 
     fun closeKeyboard() {

@@ -21,11 +21,13 @@ class EditRecipeViewModel @Inject constructor(
     private val editRecipeUseCase: EditRecipeUseCase
 ) : ViewModel() {
 
+    var title: String = ""
     var ingredientsList: ArrayList<Ingredient> = ArrayList()
     var preparationDescription: String = ""
     var categoryId: Int = 0
+    var isFavorite: Boolean = false
 
-    fun saveRecipe(title: String) {
+    fun saveRecipe() {
         val recipe = Recipe(
             0,
             title,
@@ -39,6 +41,23 @@ class EditRecipeViewModel @Inject constructor(
 
         viewModelScope.launch {
             addRecipeUseCase.execute(recipe)
+        }
+    }
+
+    fun updateRecipe(recipe: Recipe) {
+        val updatedRecipe = Recipe(
+            recipe.id,
+            title,
+            ingredientsList,
+            preparationDescription,
+            recipe.notes,
+            categoryId,
+            isFavorite,
+            Date().time
+        )
+
+        viewModelScope.launch {
+            editRecipeUseCase.execute(updatedRecipe)
         }
     }
 

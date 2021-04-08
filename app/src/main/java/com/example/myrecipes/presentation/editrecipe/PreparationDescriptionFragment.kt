@@ -35,15 +35,17 @@ class PreparationDescriptionFragment : Fragment() {
         viewModel = (activity as EditRecipeActivity).viewModel
         recipe = (activity as EditRecipeActivity).recipe
 
-        initData()
+        refreshData()
     }
 
-    private fun initData() {
+    fun refreshData() {
         if ((activity as EditRecipeActivity).recipeOperationType == RecipeOperationType.Display) {
             binding.preparationDescriptionEditText.apply {
                 setText(recipe!!.preparationDescription)
                 isFocusable = false
             }
+        } else {
+            binding.preparationDescriptionEditText.isFocusableInTouchMode = true
         }
     }
 

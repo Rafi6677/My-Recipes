@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myrecipes.R
 import com.example.myrecipes.data.db.model.Ingredient
@@ -44,12 +43,12 @@ class IngredientsFragment : Fragment() {
         binding = FragmentIngredientsBinding.bind(view)
         viewModel = (activity as EditRecipeActivity).viewModel
         recipe = (activity as EditRecipeActivity).recipe
+        adapter = IngredientsAdapter()
 
-        initData()
+        refreshData()
     }
 
-    private fun initData() {
-        adapter = IngredientsAdapter()
+    fun refreshData() {
         adapter.setOperationType((activity as EditRecipeActivity).recipeOperationType)
 
         when((activity as EditRecipeActivity).recipeOperationType) {
