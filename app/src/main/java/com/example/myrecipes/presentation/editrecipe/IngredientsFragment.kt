@@ -184,7 +184,16 @@ class IngredientsFragment : Fragment() {
     }
 
     private fun deleteIngredient(ingredient: Ingredient) {
-
+        AlertDialog.Builder(requireActivity()).apply {
+            setMessage(resources.getString(R.string.ingredient_removal_confirmation))
+            setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                adapter.getIngredientsList().remove(ingredient)
+                adapter.notifyDataSetChanged()
+                manageAddFirstIngredientInfoVisibility()
+            }
+            setNegativeButton(resources.getString(R.string.cancel)) { _, _-> }
+            create().show()
+        }
     }
 
     private fun manageAddFirstIngredientInfoVisibility() {

@@ -65,7 +65,7 @@ class EditRecipeActivity : AppCompatActivity() {
                 binding.recipeTitleEditText.isFocusable = true
                 binding.categoryButton.visibility = View.VISIBLE
                 binding.favoriteButton.visibility = View.INVISIBLE
-                binding.deleteButton.visibility = View.VISIBLE
+                binding.deleteButton.visibility = View.INVISIBLE
                 binding.saveButton.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_save, this.theme))
             }
             RecipeOperationType.Edit -> {

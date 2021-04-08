@@ -15,6 +15,7 @@
     <string name="category">Kategoria</string>
     <string name="category_brackets">(kategoria)</string>
     <string name="choose_category">Wybierz kategorię</string>
+    <string name="yes">Tak</string>
     <string name="ok">OK</string>
     <string name="next">Dalej</string>
     <string name="add">Dodaj</string>
@@ -32,4 +33,5 @@
     <string name="no_recipes_info">Nie masz jeszcze żadnego zapisanego przepisu w tej kategorii.</string>
     <string name="recipe_added_to_favorites">Przepis został dodany do ulubionych.</string>
     <string name="recipe_removed_from_favorites">Przepis został usunięty z ulubionych.</string>
+    <string name="ingredient_removal_confirmation">Czy na pewno chcesz usunąć ten składnik?</string>
 </resources>
