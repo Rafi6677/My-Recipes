@@ -58,7 +58,7 @@ class IngredientsFragment : Fragment() {
                 binding.addIngredientButton.visibility = View.VISIBLE
                 binding.addIngredientButton.apply {
                     setOnClickListener {
-                        addOrEditIngredient(IngredientOperation.Add, null)
+                        addIngredient()
                     }
                 }
 
@@ -76,7 +76,7 @@ class IngredientsFragment : Fragment() {
                 binding.addIngredientButton.visibility = View.VISIBLE
                 binding.addIngredientButton.apply {
                     setOnClickListener {
-                        addOrEditIngredient(IngredientOperation.Add, null)
+                        addIngredient()
                     }
                 }
 
@@ -134,7 +134,8 @@ class IngredientsFragment : Fragment() {
                 trySaveIngredient(
                     ingredientOperation,
                     dialogLayout.ingredient_name_editText.text.toString(),
-                    dialogLayout.ingredient_quantity_editText.text.toString()
+                    dialogLayout.ingredient_quantity_editText.text.toString(),
+                    ingredient
                 )
             }
             setNegativeButton(R.string.cancel) { _, _ -> }
@@ -145,7 +146,8 @@ class IngredientsFragment : Fragment() {
     private fun trySaveIngredient(
         ingredientOperation: IngredientOperation,
         name: String,
-        quantity: String
+        quantity: String,
+        ingredientToUpdate: Ingredient?
     ) {
         if (name.isEmpty() || quantity.isEmpty()) {
             Toast.makeText(requireActivity(), R.string.fill_data, Toast.LENGTH_SHORT)
@@ -158,18 +160,27 @@ class IngredientsFragment : Fragment() {
                 val ingredient = Ingredient(name, quantity)
                 adapter.getIngredientsList().add(ingredient)
                 viewModel.ingredientsList.addAll(adapter.getIngredientsList())
-                manageAddFirstIngredientInfoVisibility()
-                adapter.notifyDataSetChanged()
-                (activity as EditRecipeActivity).closeKeyboard()
             }
             IngredientOperation.Edit -> {
+                val index = adapter.getIngredientsList().indexOf(ingredientToUpdate)
+                adapter.getIngredientsList().removeAt(index)
 
+                val ingredient = Ingredient(name, quantity)
+                adapter.getIngredientsList().add(index, ingredient)
             }
         }
+
+        manageAddFirstIngredientInfoVisibility()
+        adapter.notifyDataSetChanged()
+        (activity as EditRecipeActivity).closeKeyboard()
+    }
+
+    private fun addIngredient() {
+        addOrEditIngredient(IngredientOperation.Add, null)
     }
 
     private fun editIngredient(ingredient: Ingredient) {
-
+        addOrEditIngredient(IngredientOperation.Edit, ingredient)
     }
 
     private fun deleteIngredient(ingredient: Ingredient) {

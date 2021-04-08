@@ -66,17 +66,18 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.IngredientsVi
             binding.ingredientQuantityTextView.text = ingredient.quantity
 
             when(recipeOperationType) {
+                RecipeOperationType.Add,
                 RecipeOperationType.Edit -> {
                     binding.editButton.apply {
                         visibility = View.VISIBLE
                         setOnClickListener {
-                            editIngredientButtonClickListener
+                            editIngredientButtonClickListener(ingredient)
                         }
                     }
                     binding.deleteButton.apply {
                         visibility = View.VISIBLE
                         setOnClickListener {
-                            deleteIngredientButtonClickListener
+                            deleteIngredientButtonClickListener(ingredient)
                         }
                     }
                 }
