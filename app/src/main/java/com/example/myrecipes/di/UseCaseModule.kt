@@ -38,44 +38,20 @@ class UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideGetBreakfastRecipesUseCase(recipesRepository: RecipesRepository): GetBreakfastRecipesUseCase {
-        return GetBreakfastRecipesUseCase(recipesRepository)
+    fun provideGetSearchedFavouriteRecipesUseCase(recipesRepository: RecipesRepository): GetSearchedFavoriteRecipesUseCase {
+        return GetSearchedFavoriteRecipesUseCase(recipesRepository)
     }
 
     @Singleton
     @Provides
-    fun provideGetSoupRecipesUseCase(recipesRepository: RecipesRepository): GetSoupRecipesUseCase {
-        return GetSoupRecipesUseCase(recipesRepository)
+    fun provideGetRecipesByCategoryUseCase(recipesRepository: RecipesRepository): GetRecipesByCategoryUseCase {
+        return GetRecipesByCategoryUseCase(recipesRepository)
     }
 
     @Singleton
     @Provides
-    fun provideGetMainDishRecipesUseCase(recipesRepository: RecipesRepository): GetMainDishRecipesUseCase {
-        return GetMainDishRecipesUseCase(recipesRepository)
-    }
-
-    @Singleton
-    @Provides
-    fun provideGetDinnerRecipesUseCase(recipesRepository: RecipesRepository): GetSaladRecipesUseCase {
-        return GetSaladRecipesUseCase(recipesRepository)
-    }
-
-    @Singleton
-    @Provides
-    fun provideGetSnackRecipesUseCase(recipesRepository: RecipesRepository): GetSnackRecipesUseCase {
-        return GetSnackRecipesUseCase(recipesRepository)
-    }
-
-    @Singleton
-    @Provides
-    fun provideGetDessertRecipesUseCase(recipesRepository: RecipesRepository): GetDessertRecipesUseCase {
-        return GetDessertRecipesUseCase(recipesRepository)
-    }
-
-    @Singleton
-    @Provides
-    fun provideGetDrinkRecipesUseCase(recipesRepository: RecipesRepository): GetDrinkRecipesUseCase {
-        return GetDrinkRecipesUseCase(recipesRepository)
+    fun provideGetSearchedRecipesByCategoryUseCase(recipesRepository: RecipesRepository): GetSearchedRecipesByCategoryUseCase {
+        return GetSearchedRecipesByCategoryUseCase(recipesRepository)
     }
 
 }

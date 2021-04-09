@@ -1,6 +1,5 @@
 package com.example.myrecipes.data.repository
 
-import androidx.lifecycle.LiveData
 import com.example.myrecipes.data.db.model.Recipe
 import com.example.myrecipes.data.repository.datasource.RecipesDataSource
 import com.example.myrecipes.domain.repository.RecipesRepository
@@ -21,18 +20,20 @@ class RecipesRepositoryImpl(private val dataSource: RecipesDataSource) : Recipes
 
     override suspend fun getFavouriteRecipes(): List<Recipe> = dataSource.getFavouriteRecipesFromDB()
 
-    override suspend fun getBreakfastRecipes(): List<Recipe> = dataSource.getBreakfastRecipesFromDB()
+    override suspend fun getSearchedFavouriteRecipes(
+        searchedQuery: String
+    ): List<Recipe> = dataSource.getSearchedFavouriteRecipesFromDB(searchedQuery)
 
-    override suspend fun getSoupRecipes(): List<Recipe> = dataSource.getSoupRecipesFromDB()
+    override suspend fun getRecipesByCategoryId(
+        categoryId: Int
+    ): List<Recipe> = dataSource.getRecipesByCategoryIdFromDB(categoryId)
 
-    override suspend fun getMainDishRecipes(): List<Recipe> = dataSource.getMainDishRecipesFromDB()
-
-    override suspend fun getSaladRecipes(): List<Recipe> = dataSource.getSaladRecipesFromDB()
-
-    override suspend fun getSnackRecipes(): List<Recipe> = dataSource.getSnackRecipesFromDB()
-
-    override suspend fun getDessertRecipes(): List<Recipe> = dataSource.getDessertRecipesFromDB()
-
-    override suspend fun getDrinkRecipes(): List<Recipe> = dataSource.getDrinkRecipesFromDB()
+    override suspend fun getSearchedRecipesByCategoryId(
+        categoryId: Int,
+        searchedQuery: String
+    ): List<Recipe> = dataSource.getSearchedRecipesByCategoryIdFromDB(
+        categoryId,
+        searchedQuery
+    )
 
 }

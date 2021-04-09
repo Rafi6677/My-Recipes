@@ -1,6 +1,5 @@
 package com.example.myrecipes.data.repository.datasourceimpl
 
-import androidx.lifecycle.LiveData
 import com.example.myrecipes.data.db.dao.RecipesDAO
 import com.example.myrecipes.data.db.model.Recipe
 import com.example.myrecipes.data.repository.datasource.RecipesDataSource
@@ -28,20 +27,23 @@ class RecipesDataSourceImpl(private val dao: RecipesDAO) : RecipesDataSource {
         }
     }
 
-    override suspend fun getFavouriteRecipesFromDB(): List<Recipe> = dao.getFavouriteRecipes()
+    override suspend fun getFavouriteRecipesFromDB(): List<Recipe> = dao
+        .getFavouriteRecipes()
 
-    override suspend fun getBreakfastRecipesFromDB(): List<Recipe> = dao.getBreakfastRecipes()
+    override suspend fun getSearchedFavouriteRecipesFromDB(
+        searchQuery: String
+    ): List<Recipe> = dao.getSearchedFavouriteRecipes(searchQuery)
 
-    override suspend fun getSoupRecipesFromDB(): List<Recipe> = dao.getSoupRecipes()
+    override suspend fun getRecipesByCategoryIdFromDB(
+        categoryId: Int
+    ): List<Recipe> = dao.getRecipesByCategoryId(categoryId)
 
-    override suspend fun getMainDishRecipesFromDB(): List<Recipe> = dao.getMainDishRecipes()
-
-    override suspend fun getSaladRecipesFromDB(): List<Recipe> = dao.getSaladRecipes()
-
-    override suspend fun getSnackRecipesFromDB(): List<Recipe> = dao.getSnackRecipes()
-
-    override suspend fun getDessertRecipesFromDB(): List<Recipe> = dao.getDessertRecipes()
-
-    override suspend fun getDrinkRecipesFromDB(): List<Recipe> = dao.getDrinkRecipes()
+    override suspend fun getSearchedRecipesByCategoryIdFromDB(
+        categoryId: Int,
+        searchQuery: String
+    ): List<Recipe> = dao.getSearchedRecipesByCategoryId(
+        categoryId,
+        searchQuery
+    )
 
 }

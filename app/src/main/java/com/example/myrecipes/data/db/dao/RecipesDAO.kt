@@ -1,6 +1,5 @@
 package com.example.myrecipes.data.db.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.myrecipes.data.db.model.Recipe
 
@@ -19,25 +18,13 @@ interface RecipesDAO {
     @Query("SELECT * FROM recipes WHERE is_favourite = 1 ORDER BY title")
     suspend fun getFavouriteRecipes(): List<Recipe>
 
-    @Query("SELECT * FROM recipes WHERE category_id = 1 ORDER BY title")
-    suspend fun getBreakfastRecipes(): List<Recipe>
+    @Query("SELECT * FROM recipes WHERE is_favourite = 1 AND title LIKE :searchQuery ORDER BY title")
+    suspend fun getSearchedFavouriteRecipes(searchQuery: String): List<Recipe>
 
-    @Query("SELECT * FROM recipes WHERE category_id = 2 ORDER BY title")
-    suspend fun getSoupRecipes(): List<Recipe>
+    @Query("SELECT * FROM recipes WHERE category_id = :categoryId ORDER BY title")
+    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>
 
-    @Query("SELECT * FROM recipes WHERE category_id = 3 ORDER BY title")
-    suspend fun getMainDishRecipes(): List<Recipe>
-
-    @Query("SELECT * FROM recipes WHERE category_id = 4 ORDER BY title")
-    suspend fun getSaladRecipes(): List<Recipe>
-
-    @Query("SELECT * FROM recipes WHERE category_id = 5 ORDER BY title")
-    suspend fun getSnackRecipes(): List<Recipe>
-
-    @Query("SELECT * FROM recipes WHERE category_id = 6 ORDER BY title")
-    suspend fun getDessertRecipes(): List<Recipe>
-
-    @Query("SELECT * FROM recipes WHERE category_id = 7 ORDER BY title")
-    suspend fun getDrinkRecipes(): List<Recipe>
+    @Query("SELECT * FROM recipes WHERE category_id = :categoryId AND title LIKE :searchQuery ORDER BY title")
+    suspend fun getSearchedRecipesByCategoryId(categoryId: Int, searchQuery: String): List<Recipe>
 
 }

@@ -13,30 +13,33 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
     private val getFavouriteRecipesUseCase: GetFavouriteRecipesUseCase,
-    private val getBreakfastRecipesUseCase: GetBreakfastRecipesUseCase,
-    private val getSoupRecipesUseCase: GetSoupRecipesUseCase,
-    private val getMainDishRecipesUseCase: GetMainDishRecipesUseCase,
-    private val getSaladRecipesUseCase: GetSaladRecipesUseCase,
-    private val getSnackRecipesUseCase: GetSnackRecipesUseCase,
-    private val getDessertRecipesUseCase: GetDessertRecipesUseCase,
-    private val getDrinkRecipesUseCase: GetDrinkRecipesUseCase
+    private val getSearchedFavouriteRecipesUseCase: GetSearchedFavoriteRecipesUseCase,
+    private val getRecipesByCategoryUseCase: GetRecipesByCategoryUseCase,
+    private val getSearchedRecipesByCategoryUseCase: GetSearchedRecipesByCategoryUseCase
 ) : ViewModel() {
 
     val recipesList = MutableLiveData<List<Recipe>>()
 
-    fun getRecipesByCategoryId(categoryId: Int) {
-        viewModelScope.launch {
-            recipesList.value = when (categoryId) {
-                -1 -> getFavouriteRecipesUseCase.execute()
-                Category.Breakfast.categoryId -> getBreakfastRecipesUseCase.execute()
-                Category.Soup.categoryId -> getSoupRecipesUseCase.execute()
-                Category.MainDish.categoryId -> getMainDishRecipesUseCase.execute()
-                Category.Salad.categoryId -> getSaladRecipesUseCase.execute()
-                Category.Snack.categoryId -> getSnackRecipesUseCase.execute()
-                Category.Dessert.categoryId -> getDessertRecipesUseCase.execute()
-                Category.Drinks.categoryId -> getDrinkRecipesUseCase.execute()
-                else -> ArrayList()
-            }
+    fun getRecipesByCategoryId(
+        categoryId: Int
+    ) = viewModelScope.launch {
+        if (categoryId == -1) {
+            recipesList.value = getFavouriteRecipesUseCase.execute()
+        } else {
+            recipesList.value = getRecipesByCategoryUseCase.execute(categoryId)
+        }
+    }
+
+    val searchedRecipesList = MutableLiveData<List<Recipe>>()
+
+    fun searchRecipes(
+        categoryId: Int,
+        searchQuery: String
+    ) = viewModelScope.launch {
+        if (categoryId == -1) {
+            searchedRecipesList.value = getSearchedFavouriteRecipesUseCase.execute(searchQuery)
+        } else {
+            searchedRecipesList.value = getSearchedRecipesByCategoryUseCase.execute(categoryId, searchQuery)
         }
     }
 
