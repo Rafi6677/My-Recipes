@@ -44,10 +44,14 @@ class RecipesListFragment : Fragment() {
     }
 
     private fun initView() {
-        binding.categoryTextView.text = CategoryConversions.getCategoryName(
-            Category.setByCategoryId(categoryId),
-            resources
-        )
+        if (categoryId == -1) {
+            binding.categoryTextView.text = resources.getString(R.string.favourite)
+        } else {
+            binding.categoryTextView.text = CategoryConversions.getCategoryName(
+                    Category.setByCategoryId(categoryId),
+                    resources
+            )
+        }
         binding.homeButton.setOnClickListener {
             requireActivity().onBackPressed()
         }

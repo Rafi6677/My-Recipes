@@ -1,13 +1,11 @@
 package com.example.myrecipes.presentation.editrecipe
 
-import android.content.res.Resources
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myrecipes.R
-import com.example.myrecipes.data.db.model.Category
 import com.example.myrecipes.data.db.model.Ingredient
 import com.example.myrecipes.data.db.model.Recipe
 import com.example.myrecipes.domain.usecase.AddRecipeUseCase
+import com.example.myrecipes.domain.usecase.DeleteRecipeUseCase
 import com.example.myrecipes.domain.usecase.EditRecipeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,7 +16,8 @@ import kotlin.collections.ArrayList
 @HiltViewModel
 class EditRecipeViewModel @Inject constructor(
     private val addRecipeUseCase: AddRecipeUseCase,
-    private val editRecipeUseCase: EditRecipeUseCase
+    private val editRecipeUseCase: EditRecipeUseCase,
+    private val deleteRecipeUseCase: DeleteRecipeUseCase
 ) : ViewModel() {
 
     var title: String = ""
@@ -58,6 +57,12 @@ class EditRecipeViewModel @Inject constructor(
 
         viewModelScope.launch {
             editRecipeUseCase.execute(updatedRecipe)
+        }
+    }
+
+    fun deleteRecipe(recipe: Recipe) {
+        viewModelScope.launch {
+            deleteRecipeUseCase.execute(recipe)
         }
     }
 

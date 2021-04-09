@@ -47,7 +47,7 @@ class EditRecipeActivity : AppCompatActivity() {
         val bundleRecipe = bundle.getSerializable("recipe") as Recipe?
 
         initViewPager()
-        initView(bundleTitle, bundleRecipe)
+        refreshView(bundleTitle, bundleRecipe)
         initButtons()
     }
 
@@ -56,7 +56,26 @@ class EditRecipeActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun initView(titleBundle: String?, recipeBundle: Recipe?) {
+    private fun initViewPager() {
+        ingredientsFragment = IngredientsFragment.getInstance()
+        preparationDescriptionFragment = PreparationDescriptionFragment.getInstance()
+
+        viewPagerAdapter = RecipeViewPagerAdapter(supportFragmentManager).apply {
+            addFragment(
+                    ingredientsFragment,
+                    resources.getString(R.string.ingredients)
+            )
+            addFragment(
+                    preparationDescriptionFragment,
+                    resources.getString(R.string.preparation_description)
+            )
+        }
+
+        binding.editRecipeViewPager.adapter = viewPagerAdapter
+        binding.editRecipeTabLayout.setupWithViewPager(binding.editRecipeViewPager)
+    }
+
+    private fun refreshView(titleBundle: String?, recipeBundle: Recipe?) {
         when (recipeOperationType) {
             RecipeOperationType.Add -> {
                 recipe = null
@@ -84,25 +103,6 @@ class EditRecipeActivity : AppCompatActivity() {
                 binding.saveButton.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_edit, this.theme))
             }
         }
-    }
-
-    private fun initViewPager() {
-        ingredientsFragment = IngredientsFragment.getInstance()
-        preparationDescriptionFragment = PreparationDescriptionFragment.getInstance()
-
-        viewPagerAdapter = RecipeViewPagerAdapter(supportFragmentManager).apply {
-            addFragment(
-                ingredientsFragment,
-                resources.getString(R.string.ingredients)
-            )
-            addFragment(
-                preparationDescriptionFragment,
-                resources.getString(R.string.preparation_description)
-            )
-        }
-
-        binding.editRecipeViewPager.adapter = viewPagerAdapter
-        binding.editRecipeTabLayout.setupWithViewPager(binding.editRecipeViewPager)
     }
 
     private fun prepareRecipe(bundleRecipe: Recipe) {
@@ -158,6 +158,20 @@ class EditRecipeActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.deleteButton.setOnClickListener {
+            AlertDialog.Builder(this).apply {
+                setMessage(resources.getString(R.string.recipe_removal_confirmation))
+                setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
+                    viewModel.deleteRecipe(recipe!!)
+
+                    Toast.makeText(this@EditRecipeActivity, resources.getString(R.string.recipe_deleted), Toast.LENGTH_SHORT)
+                            .show()
+                    finish()
+                }
+                setNegativeButton(resources.getString(R.string.cancel)) { _, _ -> }
+                create().show()
+            }
+        }
         binding.saveButton.setOnClickListener {
             when (recipeOperationType) {
                 RecipeOperationType.Add -> {
@@ -184,7 +198,7 @@ class EditRecipeActivity : AppCompatActivity() {
                 }
                 RecipeOperationType.Display -> {
                     recipeOperationType = RecipeOperationType.Edit
-                    initView(null, recipe)
+                    refreshView(null, recipe)
                     ingredientsFragment.refreshData()
                     preparationDescriptionFragment.refreshData()
                 }
